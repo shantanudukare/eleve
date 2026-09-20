@@ -18,8 +18,14 @@ public:
     void move();
     void printStatus();
 
+    // Get current elevator position
     int getCurrentFloor();
+
+    // Get current elevator direction
     Direction getDirection();
+
+    // Get number of pending requests
+    int getPendingRequests();
 };
 
 #endif

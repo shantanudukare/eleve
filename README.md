@@ -11,3 +11,10 @@ A simple **Elevator Simulation system built in C++** that demonstrates how eleva
 - Modular C++ structure
 
 ## Project Structure
+
+## To Compile 
+g++ main.cpp src/Elevator.cpp src/ElevatorController.cpp -Iinclude -o elevator
+
+## To run file 
+
+./elevator

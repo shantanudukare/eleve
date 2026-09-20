@@ -10,9 +10,10 @@ Elevator::Elevator(int id) {
 
 void Elevator::pressInsideButton(int floor) {
 
-    // avoid duplicate requests
-    if(std::find(insideRequests.begin(), insideRequests.end(), floor) 
+    // Avoid duplicate requests
+    if (std::find(insideRequests.begin(), insideRequests.end(), floor)
         == insideRequests.end()) {
+
         insideRequests.push_back(floor);
     }
 
@@ -40,22 +41,30 @@ void Elevator::move() {
     if (currentFloor == target) {
         insideRequests.erase(insideRequests.begin());
     }
+
+    // If no more requests, elevator becomes idle
+    if (insideRequests.empty()) {
+        direction = IDLE;
+    }
 }
 
 void Elevator::printStatus() {
 
     std::string dir;
 
-    if(direction == UP) dir = "UP";
-    else if(direction == DOWN) dir = "DOWN";
-    else dir = "IDLE";
+    if (direction == UP)
+        dir = "UP";
+    else if (direction == DOWN)
+        dir = "DOWN";
+    else
+        dir = "IDLE";
 
     std::cout << "Elevator " << id
               << " | Floor: " << currentFloor
               << " | Direction: " << dir
               << " | Requests: ";
 
-    for(int r : insideRequests)
+    for (int r : insideRequests)
         std::cout << r << " ";
 
     std::cout << std::endl;
@@ -67,4 +76,9 @@ int Elevator::getCurrentFloor() {
 
 Direction Elevator::getDirection() {
     return direction;
+}
+
+// Returns number of pending requests
+int Elevator::getPendingRequests() {
+    return insideRequests.size();
 }
